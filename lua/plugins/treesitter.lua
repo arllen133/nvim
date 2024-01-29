@@ -17,7 +17,7 @@ require 'nvim-treesitter.configs'.setup {
         "markdown",
         "markdown_inline",
         "go",
-    }, -- one of "all" or a list of languages
+    },
 
     highlight = { enable = true },
     indent = { enable = true },

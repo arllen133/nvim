@@ -31,3 +31,6 @@ keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 -- ---------- 插件 ---------- ---
 -- nvim-tree
 keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+
+-- lspsaga
+keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')

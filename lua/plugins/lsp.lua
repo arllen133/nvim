@@ -57,9 +57,15 @@ lspconfig.lua_ls.setup {
 }
 
 lspconfig.gopls.setup({
+    flags = { debounce_text_changes = 500 },
+    cmd = { "gopls", "-remote=auto" },
     settings = {
         gopls = {
+            usePlaceholders = true,
             analyses = {
+                nilness = true,
+                shadow = true,
+                unusewrites = true,
                 unusedparams = true,
             },
             staticcheck = true,

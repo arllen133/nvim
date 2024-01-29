@@ -1,4 +1,3 @@
-
 -- setup
 require("plugins.setup")
 
@@ -18,4 +17,3 @@ require("plugins/bufferline")
 require("plugins/gitsigns")
 require("plugins/telescope")
 require("plugins/toggleterm")
-

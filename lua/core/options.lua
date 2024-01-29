@@ -24,7 +24,7 @@ opt.mouse:append("a")
 -- opt.clipboard:append("unnamedplus")
 opt.clipboard = 'unnamedplus' -- use system clipboard
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
-opt.mouse = 'a' -- allow the mouse to be used in Nvim
+opt.mouse = 'a'               -- allow the mouse to be used in Nvim
 
 -- 默认新窗口右和下
 opt.splitright = true
@@ -39,4 +39,4 @@ opt.smartcase = true
 -- 外观
 opt.termguicolors = true
 opt.signcolumn = "yes"
-vim.cmd[[colorscheme tokyonight-moon]]
+vim.cmd [[colorscheme tokyonight-moon]]

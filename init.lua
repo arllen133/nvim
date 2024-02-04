@@ -4,6 +4,7 @@ require("plugins.setup")
 -- core config
 require("core.options")
 require("core.keymaps")
+require("core.events")
 
 -- plugins
 require("plugins/lualine")
@@ -18,3 +19,4 @@ require("plugins/gitsigns")
 require("plugins/telescope")
 require("plugins/toggleterm")
 require("plugins/lspsaga")
+require("plugins/glance")

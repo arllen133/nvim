@@ -33,4 +33,11 @@ keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 
 -- lspsaga
-keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')
+keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
+keymap.set('n', 'gd', '<cmd>Lspsaga goto_definition<CR>')
+
+-- Glance
+keymap.set('n', 'gD', '<CMD>Glance definitions<CR>')
+keymap.set('n', 'gR', '<CMD>Glance references<CR>')
+keymap.set('n', 'gY', '<CMD>Glance type_definitions<CR>')
+keymap.set('n', 'gM', '<CMD>Glance implementations<CR>')

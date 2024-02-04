@@ -56,6 +56,7 @@ local plugins = {
             'nvim-tree/nvim-web-devicons',
         }
     },
+    'dnlhc/glance.nvim',
 }
 local opts = {} -- 注意要定义这个变量
 

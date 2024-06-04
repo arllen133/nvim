@@ -6,6 +6,7 @@ LazyVim.lsp = require("util.lsp")
 LazyVim.mini = require("util.mini")
 LazyVim.root = require("util.root")
 LazyVim.lualine = require("util.lualine")
+LazyVim.telescope = require("util.telescope")
 
 LazyVim.config = {
     icons = {
@@ -77,5 +78,5 @@ LazyVim.config = {
 
 require("config.options")
 require("config.keymaps")
-require("config.lazy")
 require("config.autocmds")
+require("config.lazy")

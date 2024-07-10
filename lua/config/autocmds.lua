@@ -31,3 +31,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.lsp.buf.format({ async = false })
     end
 })
+
+-- Automatically reload a buffer if it detects changes outside of Neovim
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+    pattern = "*",
+    callback = function()
+        vim.cmd("checktime")
+    end,
+})
+
+-- this is used to "update" buffers after modifying them with lazygit invoked from toggleterm
+vim.api.nvim_create_autocmd({ "TermClose", "TermLeave" }, {
+    callback = function()
+        LazyVim.reload_all_buffers()
+    end
+})

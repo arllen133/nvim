@@ -43,6 +43,23 @@ function M.on_load(name, fn)
     end
 end
 
+-- Function to open LazyGit within ToggleTerm
+function M.open_lazygit()
+    local Terminal = require('toggleterm.terminal').Terminal
+    local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+    lazygit:toggle()
+end
+
+-- Optionally, create a function to manually reload all buffers
+function M.reload_all_buffers()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, 'buftype') == '' then
+            vim.api.nvim_command('checktime ' .. buf)
+        end
+    end
+end
+
 --- Override the default title for notifications.
 for _, level in ipairs({ "info", "warn", "error" }) do
     M[level] = function(msg, opts)

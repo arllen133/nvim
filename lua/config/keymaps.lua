@@ -24,3 +24,9 @@ end, { desc = "Delete Current Buffer", remap = true })
 
 -- clear hlsearch
 map("n", "<Esc><Esc>", ":noh<CR>", { desc = "Clear Highlight Search" })
+
+-- Map the function to a key
+map("n", "<leader>gg", ":lua LazyVim.open_lazygit()<CR>", { noremap = true, silent = true })
+
+-- Map the function to a key
+map("n", "<leader>ra", ":lua LazyVim.reload_all_buffers()<CR>", { noremap = true, silent = true })

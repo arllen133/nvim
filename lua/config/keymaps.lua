@@ -21,3 +21,6 @@ map("i", ";", ";<c-g>u")
 map("n", "<leader>bd", function()
     vim.api.nvim_command('bp|bd#')
 end, { desc = "Delete Current Buffer", remap = true })
+
+-- clear hlsearch
+map("n", "<Esc><Esc>", ":noh<CR>", { desc = "Clear Highlight Search" })

@@ -74,8 +74,7 @@ return {
         },
         config = function()
             local lspconfig = require('lspconfig')
-            local lsp = require("lsp")
-            lsp.setup(lspconfig)
+            require("lsp").setup(lspconfig)
         end
     }
 

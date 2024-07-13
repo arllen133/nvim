@@ -25,9 +25,9 @@ return {
                 lualine_b = { "branch" },
 
                 lualine_c = {
-                    {"diagnostics"},
-                    { "filetype",                   icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-                    {"filename", file_status=true, path=1},
+                    { "diagnostics" },
+                    { "filetype",   icon_only = true,   separator = "", padding = { left = 1, right = 0 } },
+                    { "filename",   file_status = true, path = 1 },
                 },
                 lualine_x = {
                     {
@@ -63,13 +63,11 @@ return {
         }
     },
     {
-        -- amongst your other plugins
-        -- {'akinsho/toggleterm.nvim', version = "*", config = true}
-        -- or
-        {'akinsho/toggleterm.nvim',
-            event = "VeryLazy",
-            version = "*", opts = {
-                open_mapping = [[<c-\>]],
-            }}
+        'akinsho/toggleterm.nvim',
+        event = "VeryLazy",
+        version = "*",
+        opts = {
+            open_mapping = [[<c-\>]],
+        }
     }
 }

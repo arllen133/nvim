@@ -177,9 +177,4 @@ return {
         event = "VeryLazy",
         enabled = true,
     },
-    {
-        "windwp/nvim-ts-autotag",
-        event = "VeryLazy",
-        opts = {},
-    }
 }

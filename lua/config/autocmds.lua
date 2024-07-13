@@ -31,7 +31,8 @@ autocmd("BufWritePre", {
 autocmd("FileChangedShellPost", {
     pattern = "*",
     callback = function()
-        vim.cmd("checktime")
+        -- vim.cmd("checktime")
+        LazyVim.reload_all_buffers()
     end,
 })
 

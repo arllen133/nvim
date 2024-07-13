@@ -1,54 +1,42 @@
-local builtin = require('telescope.builtin')
+return {
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        keys = {
+            {
+                "<leader>,",
+                "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
+                desc = "Switch Buffer",
+            },
+            { "<leader>:",  "<cmd>Telescope command_history<cr>",                          desc = "Command History" },
+            -- find
+            { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+            { "<leader>ff", "<cmd>Telescope find_files<cr>",                               desc = "Find Files (Root Dir)" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>",                                desc = "Find Files (git-files)" },
+            { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                                 desc = "Recent" },
+            -- git
+            { "<leader>gc", "<cmd>Telescope git_commits<CR>",                              desc = "Commits" },
+            { "<leader>gs", "<cmd>Telescope git_status<CR>",                               desc = "Status" },
+            -- search
+            { '<leader>s"', "<cmd>Telescope registers<cr>",                                desc = "Registers" },
+            { "<leader>sa", "<cmd>Telescope autocommands<cr>",                             desc = "Auto Commands" },
+            { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",                desc = "Buffer" },
+            { "<leader>sc", "<cmd>Telescope command_history<cr>",                          desc = "Command History" },
+            { "<leader>sC", "<cmd>Telescope commands<cr>",                                 desc = "Commands" },
+            { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>",                      desc = "Document Diagnostics" },
+            { "<leader>sD", "<cmd>Telescope diagnostics<cr>",                              desc = "Workspace Diagnostics" },
+            { "<leader>sh", "<cmd>Telescope help_tags<cr>",                                desc = "Help Pages" },
+            { "<leader>sH", "<cmd>Telescope highlights<cr>",                               desc = "Search Highlight Groups" },
+            { "<leader>sj", "<cmd>Telescope jumplist<cr>",                                 desc = "Jumplist" },
+            { "<leader>sk", "<cmd>Telescope keymaps<cr>",                                  desc = "Key Maps" },
+            { "<leader>sl", "<cmd>Telescope loclist<cr>",                                  desc = "Location List" },
+            { "<leader>sM", "<cmd>Telescope man_pages<cr>",                                desc = "Man Pages" },
+            { "<leader>sm", "<cmd>Telescope marks<cr>",                                    desc = "Jump to Mark" },
+            { "<leader>so", "<cmd>Telescope vim_options<cr>",                              desc = "Options" },
+            { "<leader>sR", "<cmd>Telescope resume<cr>",                                   desc = "Resume" },
+            { "<leader>sq", "<cmd>Telescope quickfix<cr>",                                 desc = "Quickfix List" },
+        },
+    }
 
-require('telescope').setup {
-    defaults = {
-        mappings = {
-            i = {
-                -- map actions.which_key to <C-h> (default: <C-/>)
-                -- actions.which_key shows the mappings for your picker,
-                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                -- ["<C-h>"] = "which_key",
-                ['<leader>ff'] = builtin.find_files,
-                ['<leader>fg'] = builtin.live_grep,
-                ['<leader>fb'] = builtin.buffers,
-                ['<leader>fh'] = builtin.help_tags,
-            }
-        },
-        vimgrep_arguments = {
-            "rg",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-        },
-        initial_mode = "insert",
-        scroll_strategy = "limit",
-        results_title = false,
-        layout_strategy = "horizontal",
-        path_display = { "absolute" },
-        selection_strategy = "reset",
-        sorting_strategy = "ascending",
-        color_devicons = true,
-        file_ignore_patterns = { ".git/", ".cache", "build/", "%.class", "%.pdf", "%.mkv", "%.mp4", "%.zip" },
-        layout_config = {
-            horizontal = {
-                prompt_position = "top",
-                preview_width = 0.55,
-                results_width = 0.8,
-            },
-            vertical = {
-                mirror = false,
-            },
-            width = 0.85,
-            height = 0.92,
-            preview_cutoff = 120,
-        },
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-        file_sorter = require("telescope.sorters").get_fuzzy_file,
-        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-        buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-    },
 }

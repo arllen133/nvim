@@ -17,7 +17,8 @@ return {
                 use_libuv_file_watcher = true,
             },
         },
-        config = function()
+        config = function(_, opts)
+            require("neo-tree").setup(opts)
             vim.api.nvim_create_autocmd("TermClose", {
                 pattern = "*lazygit",
                 callback = function()

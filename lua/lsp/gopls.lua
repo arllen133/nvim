@@ -1,11 +1,5 @@
 local util = require("lsp.util")
 
--- local capabilities = function()
---     local capabilities = vim.lsp.protocol.make_client_capabilities()
---     capabilities.textDocument.completion.completionItem.snippetSupport = true
---     return capabilities
--- end
-
 return {
     on_attach = util.on_attach,
     capabilities = util.capabilities(),

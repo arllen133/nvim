@@ -11,7 +11,14 @@ end
 function M.reload_all_buffers()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, 'buftype') == '' then
-            vim.api.nvim_command('checktime ' .. buf)
+            local bufname = vim.api.nvim_buf_get_name(buf)
+            if bufname ~= "" and not vim.fn.filereadable(bufname) then
+                -- 如果文件不可读，则删除缓冲区
+                vim.api.nvim_buf_delete(buf, { force = true })
+            else
+                -- 重新加载缓冲区
+                vim.api.nvim_command('checktime ' .. buf)
+            end
         end
     end
 end

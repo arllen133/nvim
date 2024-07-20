@@ -23,6 +23,13 @@ M.on_attach = function(_, bufnr)
     buf_set_keymap(bufnr, 'n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     -- buf_set_keymap(bufnr, 'n', '<space>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     -- buf_set_keymap(bufnr, 'n', '<space>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    -- Enable code lens on attach
+    vim.api.nvim_create_augroup("LspCodeLens", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+        group = "LspCodeLens",
+        buffer = bufnr,
+        callback = vim.lsp.codelens.refresh,
+    })
 end
 
 M.capabilities = function()

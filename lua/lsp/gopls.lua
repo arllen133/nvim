@@ -1,8 +1,12 @@
 local util = require("lsp.util")
+local lspconfig = require('lspconfig')
 
 return {
     on_attach = util.on_attach,
     capabilities = util.capabilities(),
+    cmd = { "gopls", "serve" },
+    filetypes = { "go", "gomod" },
+    root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
     settings = {
         gopls = {
             gofumpt = true,

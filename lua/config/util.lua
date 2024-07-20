@@ -37,7 +37,7 @@ function M.ai_indent(ai_type)
         end
     end
 
-    local ret = {} ---@type (Mini.ai.region | {indent: number})[]
+    local ret = {}
 
     for i = 1, #indents do
         if i == 1 or indents[i - 1].indent < indents[i].indent then
@@ -76,6 +76,49 @@ function M.ai_buffer(ai_type)
 
     local to_col = math.max(vim.fn.getline(end_line):len(), 1)
     return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
+end
+
+-- 创建一个函数来显示 CodeLens 并使用 Telescope 选择和执行
+function M.show_and_execute_codelens()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local codelens = vim.lsp.codelens.get(bufnr)
+
+    if not codelens or vim.tbl_isempty(codelens) then
+        vim.notify("No CodeLens available")
+        return
+    end
+
+    local opts = {}
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
+    local finders = require('telescope.finders')
+    local pickers = require('telescope.pickers')
+    local conf = require('telescope.config').values
+
+    pickers.new(opts, {
+        prompt_title = 'CodeLens Actions',
+        finder = finders.new_table {
+            results = codelens,
+            entry_maker = function(entry)
+                return {
+                    value = entry,
+                    display = entry.command.title,
+                    ordinal = entry.command.title,
+                }
+            end,
+        },
+        sorter = conf.generic_sorter(opts),
+        attach_mappings = function(prompt_bufnr)
+            actions.select_default:replace(function()
+                actions.close(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                if selection then
+                    vim.lsp.buf.execute_command(selection.value.command)
+                end
+            end)
+            return true
+        end,
+    }):find()
 end
 
 return M

@@ -29,4 +29,9 @@ map("n", "<Esc><Esc>", ":noh<CR>", { desc = "Clear Highlight Search" })
 map("n", "<leader>gg", ":lua LazyVim.open_lazygit()<CR>", { noremap = true, silent = true, desc = "Open Lazygit" })
 
 -- Map the function to a key
-map("n", "<leader>ra", ":lua LazyVim.reload_all_buffers()<CR>", { noremap = true, silent = true })
+map("n", "<leader>ra", ":lua LazyVim.reload_all_buffers()<CR>",
+    { noremap = true, silent = true, desc = "Realod All Bufders" })
+
+-- codelens
+map('n', '<leader>cl', '<cmd>lua LazyVim.show_and_execute_codelens()<CR>',
+    { noremap = true, silent = true, desc = "Open and Execute Codelens" })

@@ -23,7 +23,7 @@ map("n", "<leader>bd", function()
 end, { desc = "Delete Current Buffer", remap = true })
 
 -- clear hlsearch
-map("n", "<Esc><Esc>", ":noh<CR>", { desc = "Clear Highlight Search" })
+-- map("n", "<Esc><Esc>", ":noh<CR>", { desc = "Clear Highlight Search" })
 
 -- Map the function to a key
 map("n", "<leader>gg", ":lua LazyVim.open_lazygit()<CR>", { noremap = true, silent = true, desc = "Open Lazygit" })

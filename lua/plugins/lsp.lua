@@ -38,7 +38,7 @@ return {
           filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         },
         -- rust
-        ['rust-analyzer'] = {},
+        rust_analyzer = {},
 
         -- yaml
         yamlls = {},

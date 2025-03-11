@@ -115,6 +115,16 @@ return {
         },
         -- buf lsp
         buf_ls = {},
+        -- python lsp
+        pyright = {},
+        ruff = {
+          cmd_env = { RUFF_TRACE = "messages" },
+          init_options = {
+            settings = {
+              logLevel = "error",
+            },
+          },
+        },
       },
       setup = {},
     },
@@ -180,6 +190,8 @@ return {
         "delve",               -- Go debugger
         "lua-language-server", -- 添加 Lua LSP
         "stylua",              -- Lua 代码格式化工具
+        "pyright",             -- python lsp
+        "ruff-lsp",
       },
     },
     config = function(_, opts)
@@ -219,6 +231,7 @@ return {
     opts = {
       formatters_by_ft = {
         go = { "gofumpt", "goimports" },
+        python = { "ruff" },
       },
       format_on_save = {
         timeout_ms = 500,

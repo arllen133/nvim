@@ -29,6 +29,7 @@ return {
         "regex",
         "yaml",
         "proto",
+        "python",
       },
       incremental_selection = {
         enable = true,

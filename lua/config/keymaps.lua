@@ -40,3 +40,9 @@ map("v", "p", '"_dP')
 
 -- 取消 Q 的 Ex 模式
 map("n", "Q", "<nop>")
+
+map("n", '<leader>ih',
+    function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end
+)

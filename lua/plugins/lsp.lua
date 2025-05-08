@@ -26,7 +26,7 @@ return {
         severity_sort = true,
       },
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       capabilities = {},
       format = {
@@ -38,7 +38,18 @@ return {
           filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         },
         -- rust
-        rust_analyzer = {},
+        rust_analyzer = {
+          settings = {
+            ['rust-analyzer'] = {
+              inlayHints = {
+                typeHints = { enable = true },      -- 类型提示
+                parameterHints = { enable = true }, -- 参数提示
+                chainingHints = { enable = true },  -- 链式调用提示
+              },
+              -- 其他 rust_analyzer 配置...
+            },
+          }
+        },
 
         -- yaml
         yamlls = {},
@@ -191,7 +202,8 @@ return {
         "lua-language-server", -- 添加 Lua LSP
         "stylua",              -- Lua 代码格式化工具
         "pyright",             -- python lsp
-        "ruff-lsp",
+        "ruff",
+        "rust-analyzer"
       },
     },
     config = function(_, opts)

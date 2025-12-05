@@ -1,4 +1,12 @@
 return {
+  -- Go debugger
+  {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    config = true,
+  },
+
+  -- Custom gomodifytags
   {
     dir = vim.fn.stdpath("config") .. "/lua/plugins/custom/gomodifytags",
     dev = true,

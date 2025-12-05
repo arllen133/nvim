@@ -59,7 +59,7 @@ return {
           goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
           goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
           goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+          goto_previous_end = { ["[F]"] = "@function.outer", ["[C]"] = "@class.outer" },
         },
         swap = {
           enable = true,
@@ -87,45 +87,48 @@ return {
     end,
   },
 
-  -- Git支持
+  -- 注释
   {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    "numToStr/Comment.nvim",
     opts = {
-      signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+      padding = true,
+      sticky = true,
+      toggler = {
+        line = "gcc",
+        block = "gbc",
       },
-      current_line_blame = true,
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
+      opleader = {
+        line = "gc",
+        block = "gb",
+      },
+    },
+    lazy = false,
+  },
 
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-
-        -- Navigation
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
-
-        -- Actions
-        map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
-        map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
-        map("v", "<leader>hs", function() gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") } end, "Stage Hunk")
-        map("v", "<leader>hr", function() gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") } end, "Reset Hunk")
-        map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>hb", function() gs.blame_line { full = true } end, "Blame Line")
-        map("n", "<leader>hd", gs.diffthis, "Diff This")
-        map("n", "<leader>hD", function() gs.diffthis("~") end, "Diff This ~")
-      end,
+  -- 自动配对
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      ts_config = {
+        lua = { "string" },
+        javascript = { "template_string" },
+      },
     },
   },
 
+  -- 快速跳转
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    },
+  },
 }

@@ -94,6 +94,7 @@ return {
       },
     },
   },
+
   -- 文件树
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -140,21 +141,118 @@ return {
       end,
     },
   },
+
+  -- 替换 vim.ui.select
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     opts = {
       select = {
-        backend = { "telescope", "builtin" }, -- 使用 Telescope 或内置选择器
+        backend = { "telescope", "builtin" },
         builtin = {
-          anchor = "NW",                      -- 控制弹窗的定位
-          border = "rounded",                 -- 圆角边框
-          winblend = 10,                      -- 窗口透明度
-          max_width = { 140, 0.8 },           -- 窗口宽度
-          max_height = { 40, 0.9 },           -- 窗口高度
+          anchor = "NW",
+          border = "rounded",
+          winblend = 10,
+          max_width = { 140, 0.8 },
+          max_height = { 40, 0.9 },
         },
-        telescope = { theme = "dropdown" },   -- 使用 Telescope 时的主题
+        telescope = { theme = "dropdown" },
       },
     }
-  }
+  },
+
+  -- 按键提示
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      plugins = { spelling = true },
+      defaults = {
+        mode = { "n", "v" },
+        ["["] = { name = "+prev" },
+        ["]"] = { name = "+next" },
+        ["g"] = { name = "+goto" },
+        ["gz"] = { name = "+surround" },
+        ["<leader>b"] = { name = "+buffer" },
+        ["<leader>c"] = { name = "+code" },
+        ["<leader>f"] = { name = "+file/find" },
+        ["<leader>g"] = { name = "+git" },
+        ["<leader>h"] = { name = "+help" },
+        ["<leader>n"] = { name = "+notes" },
+        ["<leader>o"] = { name = "+open" },
+        ["<leader>q"] = { name = "+quit/session" },
+        ["<leader>s"] = { name = "+search" },
+        ["<leader>t"] = { name = "+terminal/test" },
+        ["<leader>u"] = { name = "+ui" },
+        ["<leader>w"] = { name = "+windows" },
+        ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.add({
+        mode = { "n", "v" },
+        { "[d", vim.diagnostic.goto_prev, desc = "上一个错误" },
+        { "]d", vim.diagnostic.goto_next, desc = "下一个错误" },
+        { "gl", vim.diagnostic.open_float, desc = "显示错误信息" },
+        { "ga", vim.lsp.buf.code_action, desc = "Code Action" },
+        { "<leader>w=", "<C-W>=", desc = "等宽窗口" },
+        { "<leader>ww", "<C-W>p", desc = "切换窗口" },
+        { "<leader>wd", "<C-W>c", desc = "删除窗口" },
+        { "<leader>wh", "<C-W>h", desc = "左窗口" },
+        { "<leader>wj", "<C-W>j", desc = "下窗口" },
+        { "<leader>wk", "<C-W>k", desc = "上窗口" },
+        { "<leader>wl", "<C-W>l", desc = "右窗口" },
+      })
+    end,
+  },
+
+  -- 缩进指示线
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+      },
+    },
+  },
+
+  -- 高亮相同单词
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      delay = 200,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp" },
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+    end,
+  },
 }

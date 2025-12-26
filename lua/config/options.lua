@@ -32,7 +32,6 @@ opt.splitright = true
 
 -- 性能相关
 opt.lazyredraw = true
-opt.shadafile = "NONE"
 opt.history = 100
 opt.synmaxcol = 240
 opt.updatetime = 100

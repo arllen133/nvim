@@ -1,4 +1,7 @@
 -- bootstrap lazy.nvim
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 if vim.g.vscode then
 	return
 end

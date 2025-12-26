@@ -56,10 +56,6 @@ return {
 
         -- gopls配置
         gopls = {
-          keys = {
-            { "<leader>td", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug Go Test" },
-            { "<leader>tl", "<cmd>lua require('dap-go').debug_last()<CR>", desc = "Debug Last Go Test" },
-          },
           settings = {
             gopls = {
               gofumpt = true,
@@ -199,6 +195,7 @@ return {
         "goimports",           -- Go imports
         "golangci-lint",       -- Go linter
         "delve",               -- Go debugger
+        "gomodifytags",        -- Go struct tags
         "lua-language-server", -- 添加 Lua LSP
         "stylua",              -- Lua 代码格式化工具
         "pyright",             -- python lsp

@@ -87,35 +87,11 @@ return {
     end,
   },
 
-  -- 注释
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      padding = true,
-      sticky = true,
-      toggler = {
-        line = "gcc",
-        block = "gbc",
-      },
-      opleader = {
-        line = "gc",
-        block = "gb",
-      },
-    },
-    lazy = false,
-  },
-
   -- 自动配对
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      check_ts = true,
-      ts_config = {
-        lua = { "string" },
-        javascript = { "template_string" },
-      },
-    },
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    opts = {},
   },
 
   -- 快速跳转

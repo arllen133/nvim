@@ -26,7 +26,7 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "snacks_dashboard" } },
       },
       sections = {
         lualine_c = {
@@ -59,18 +59,6 @@ return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
-      {
-        "<leader>bd",
-        function()
-          if vim.bo.modified then
-            vim.notify("unsaved changes in this buffer.")
-            return
-          end
-          local buffer_id = vim.fn.bufnr()
-          vim.cmd('bn|bdelete ' .. buffer_id)
-        end,
-        desc = "Delete current buffer"
-      },
       { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close other buffers" },
     },
     opts = {
@@ -114,51 +102,6 @@ return {
         desc = "Explorer NeoTree (cwd)",
       },
     },
-  },
-
-  -- 通知
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>un",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Dismiss all Notifications",
-      },
-    },
-    opts = {
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-      on_open = function(win)
-        vim.api.nvim_win_set_config(win, { zindex = 100 })
-      end,
-    },
-  },
-
-  -- 替换 vim.ui.select
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = {
-      select = {
-        backend = { "telescope", "builtin" },
-        builtin = {
-          anchor = "NW",
-          border = "rounded",
-          winblend = 10,
-          max_width = { 140, 0.8 },
-          max_height = { 40, 0.9 },
-        },
-        telescope = { theme = "dropdown" },
-      },
-    }
   },
 
   -- 按键提示
@@ -209,50 +152,6 @@ return {
         { "<leader>wk", "<C-W>k", desc = "上窗口" },
         { "<leader>wl", "<C-W>l", desc = "右窗口" },
       })
-    end,
-  },
-
-  -- 缩进指示线
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      indent = {
-        char = "│",
-        tab_char = "│",
-      },
-      scope = { enabled = false },
-      exclude = {
-        filetypes = {
-          "help",
-          "alpha",
-          "dashboard",
-          "neo-tree",
-          "Trouble",
-          "trouble",
-          "lazy",
-          "mason",
-          "notify",
-          "toggleterm",
-          "lazyterm",
-        },
-      },
-    },
-  },
-
-  -- 高亮相同单词
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      delay = 200,
-      large_file_cutoff = 2000,
-      large_file_overrides = {
-        providers = { "lsp" },
-      },
-    },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
     end,
   },
 }

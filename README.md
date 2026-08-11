@@ -6,9 +6,10 @@ A modern, fast, and full-featured Neovim configuration tailored for Go, Python, 
 
 - **Plugin Manager**: [lazy.nvim](https://github.com/folke/lazy.nvim)
 - **LSP Support**: Pre-configured for Go (`gopls`), Python (`pyright`, `ruff`), Lua (`lua_ls`), and more.
-- **Auto-completion**: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with snippets support.
+- **Auto-completion**: [blink.cmp](https://github.com/saghen/blink.cmp) (fast, Rust-based engine) with snippets support.
 - **Code Formatting**: [conform.nvim](https://github.com/stevearc/conform.nvim) (supports `gofumpt`, `goimports`, `ruff`).
 - **Debugging**: [nvim-dap](https://github.com/mfussenegger/nvim-dap) with [nvim-dap-go](https://github.com/leoluz/nvim-dap-go) integration.
+- **Editing**: [nvim-surround](https://github.com/kylechui/nvim-surround) for character surrounds.
 - **Testing**: [neotest](https://github.com/nvim-neotest/neotest) for running and debugging tests.
 - **UI Components**:
   - [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) colorscheme.
@@ -23,7 +24,7 @@ A modern, fast, and full-featured Neovim configuration tailored for Go, Python, 
 - Neovim >= 0.9.0
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (optional, for icons)
-- Build tools (for some plugins like `telescope-fzf-native`)
+- Build tools (e.g. `make`, `gcc`, `cargo` for building plugin dependencies)
 
 ## 📦 Installation
 

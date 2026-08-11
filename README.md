@@ -13,8 +13,8 @@ A modern, fast, and full-featured Neovim configuration tailored for Go, Python, 
 - **UI Components**:
   - [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) colorscheme.
   - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) statusline.
-  - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) file explorer.
-  - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) for fuzzy searching.
+  - [snacks.nvim](https://github.com/folke/snacks.nvim) for file explorer and fuzzy searching.
+  - [mini.icons](https://github.com/echasnovski/mini.icons) for modern icons.
 - **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) and [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim).
 - **AI Support**: Gemini AI integration.
 
@@ -41,9 +41,9 @@ The `<leader>` key is set to `Space`.
 | Keymap | Description |
 | --- | --- |
 | `<leader>gg` | Open LazyGit |
-| `<leader>e` | Toggle File Explorer (Neo-tree) |
-| `<leader>ff` | Find Files (Telescope) |
-| `<leader>fg` | Live Grep (Telescope) |
+| `<leader>e` | Toggle File Explorer (Snacks) |
+| `<leader>ff` | Find Files (Snacks Picker) |
+| `<leader>sg` | Live Grep (Snacks Picker) |
 | `<leader>bd` | Delete current buffer |
 | `<leader>f` | Format current buffer |
 | `<leader>dt` | Debug Go Test (in Go files) |

@@ -1,5 +1,3 @@
-local ts_utils = require 'nvim-treesitter.ts_utils'
-
 local M = {}
 
 M.opt = {}
@@ -145,7 +143,7 @@ function M.remove_tags(cmd)
 end
 
 function M.get_under_cursor_sruct_name()
-  local node = ts_utils.get_node_at_cursor(0)
+  local node = vim.treesitter.get_node()
 
   if not node then
     return nil

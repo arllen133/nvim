@@ -29,12 +29,12 @@ opt.updatetime = 100
 opt.timeoutlen = 250
 opt.splitbelow = true
 opt.splitright = true
+opt.modifiable = true
 
 -- 性能相关
 opt.lazyredraw = true
 opt.history = 100
 opt.synmaxcol = 240
-opt.updatetime = 100
 
 -- 备份和撤销
 opt.backup = false
@@ -46,8 +46,6 @@ opt.buflisted = false
 -- 搜索
 opt.hlsearch = true
 opt.incsearch = true
-opt.ignorecase = true
-opt.smartcase = true
 
 -- 编码
 opt.fileencoding = "utf-8"

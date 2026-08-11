@@ -7,12 +7,7 @@ return {
       { "folke/neodev.nvim", opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        cond = function()
-          return require("lazy.core.config").spec.plugins["nvim-cmp"] ~= nil
-        end,
-      },
+      "saghen/blink.cmp",
     },
     opts = {
       diagnostics = {
@@ -137,13 +132,7 @@ return {
     },
     config = function(_, opts)
       local servers = opts.servers
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities(),
-        opts.capabilities or {}
-      )
+      local capabilities = require('blink.cmp').get_lsp_capabilities(opts.capabilities or {})
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {

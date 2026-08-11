@@ -107,4 +107,14 @@ return {
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
   },
+
+  -- 强大的环绕字符编辑 (替换/删除/增加 引号、括号等)
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({})
+    end
+  },
 }
